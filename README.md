@@ -1,12 +1,10 @@
-MicroLib — Config
-=================
+# MicroLib — Config
 
 A small, PHP, configuration library consisting mostly of functions. Yep,
 _functions_, because working with configuration arrays should be simple and
 fast.
 
-Features
---------
+## Features
 
 * Small library. No bloat. Easy-to-use functions.
 * Supports PHP array, JSON, INI, YAML, and XML config file formats.
@@ -16,11 +14,9 @@ Features
   validations and transformations.
 * Easily fetch values from nested config structure.
 
-Usage
------
+## Usage
 
-Validating Against a Schema
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Validating Against a Schema
 
 Let's say you have a config file that looks like this:
 
@@ -47,11 +43,11 @@ use MicroLib\Config as cfg;
 
 ```php
 $config = cfg\load('config.json');
-php
+```
 
-3. Define a schema for the data. Using the ``schema`` function is optional,
+3. Define a schema for the data. Using the `schema` function is optional,
    but is useful for validating that the schema is defined correctly. (Note:
-   The schema can be placed in a separate file and loaded with the ``load``
+   The schema can be placed in a separate file and loaded with the `load`
    function like other config data.)
 
 ```php
@@ -89,7 +85,7 @@ $schema = cfg\schema([
 $config = cfg\validate($config, $schema);
 ```
 
-5. Fetch data from the config using ``get``.
+5. Fetch data from the config using `get`.
 
 ```php
 echo cfg\get($config, 'phone.number');
@@ -97,4 +93,47 @@ echo cfg\get($config, 'phone.number');
 
 echo cfg\get($config, 'phone.type');
 #> mobile
+```
+
+### Simple Check for Required Keys
+
+If you don't need the functionality of the schemas, there is still an easy way
+to enforce required settings and apply default values.
+
+Let's say you have the following array of configuration data:
+
+```php
+$config = [
+    'class'  => 'rogue',
+    'race'   => 'half-elf',
+    'level'  => 5,
+    'weapon' => 'short sword',
+];
+```
+
+If you aren't concerned about all of the items, you can use the `keep`
+function to create a new array of only the items you want.
+
+```php
+$config = cfg\keep($config, ['race', 'class', 'level']);
+```
+
+Then, using the `create` function, you can check requirements and apply
+defaults.
+
+```php
+$config = cfg\create(
+	$config,
+	['race', 'class', 'level'],
+	['status' => 'normal']
+);
+
+print_r($config);
+#> Array
+#> (
+#>     [class] => rogue
+#>     [race] => half-elf
+#>     [level] => 5
+#>     [status] => normal
+#> )
 ```
