@@ -31,7 +31,7 @@ Let's say you have a config file that looks like this:
 
 In your PHP script…
 
-1. Include the Config library:
+Include the Config library.
 
 ```php
 require '/path/to/vendor/autoload.php';
@@ -39,16 +39,16 @@ require '/path/to/vendor/autoload.php';
 use MicroLib\Config as cfg;
 ```
 
-2. Load the config file.
+Load the config file.
 
 ```php
 $config = cfg\load('config.json');
 ```
 
-3. Define a schema for the data. Using the `schema` function is optional,
-   but is useful for validating that the schema is defined correctly. (Note:
-   The schema can be placed in a separate file and loaded with the `load`
-   function like other config data.)
+Define a schema for the data. Using the `schema` function is optional but is
+useful for validating that the schema is defined correctly. (Note: The schema
+can be placed in a separate file and loaded with the `load` function like other
+config data.)
 
 ```php
 $schema = cfg\schema([
@@ -78,14 +78,14 @@ $schema = cfg\schema([
 ]);
 ```
 
-4. Validate the configuration data with the schema. If no exception is thrown,
-   then the data is valid.
+Validate the configuration data with the schema. If no exception is thrown,
+then the data is valid.
 
 ```php
 $config = cfg\validate($config, $schema);
 ```
 
-5. Fetch data from the config using `get`.
+Fetch data from the config using `get`.
 
 ```php
 echo cfg\get($config, 'phone.number');
@@ -115,7 +115,7 @@ If you aren't concerned about all of the items, you can use the `keep`
 function to create a new array of only the items you want.
 
 ```php
-$config = cfg\keep($config, ['race', 'class', 'level']);
+$config = cfg\keep($config, ['class', 'race', 'level']);
 ```
 
 Then, using the `create` function, you can check requirements and apply
@@ -124,7 +124,7 @@ defaults.
 ```php
 $config = cfg\create(
 	$config,
-	['race', 'class', 'level'],
+	['class', 'race', 'level'],
 	['status' => 'normal']
 );
 
