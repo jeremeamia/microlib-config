@@ -1,0 +1,27 @@
+{
+    "name": "jeremeamia/microlib-config",
+    "type": "library",
+    "description": "A small, PHP, configuration library consisting mostly of functions.",
+    "keywords": ["configurations", "config", "micro", "function", "validation", "schema"],
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Jeremy Lindblom",
+            "email": "jeremeamia@gmail.com",
+            "homepage": "https://github.com/jeremeamia"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.4.0"
+    },
+
+    "suggest": {
+        "symfony/yaml": "For reading YAML configs."
+    },
+
+    "autoload": {
+        "files": ["config.php"]
+    }
+}
