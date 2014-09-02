@@ -1,5 +1,5 @@
 {
-    "name": "jeremeamia/microlib-config",
+    "name": "microlib/config",
     "type": "library",
     "description": "A small, PHP, configuration library consisting mostly of functions.",
     "keywords": ["configurations", "config", "micro", "function", "validation", "schema"],
