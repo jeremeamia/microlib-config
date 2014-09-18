@@ -41,11 +41,11 @@ function create(array $config, array $required = [], array $defaults = [])
 function get(array $config, $path, $delimiter = DELIMITER)
 {
     $path = is_array($path) ? $path : explode($delimiter, $path);
+    $value = $config;
 
-    $key = array_shift($path);
-    $value = isset($config[$key]) ? $config[$key] : null;
-    if (is_array($value) && $path) {
-        $value = get($value, $path);
+    while (is_array($value) && $path) {
+        $key = array_shift($path);
+        $value = isset($value[$key]) ? $value[$key] : null;
     }
 
     if ($value instanceof _LazyValue) {
